@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // users seed
         \App\Models\User::factory()->create([
             'name' => 'Administrator',
             'email' => 'admin@perdana.com',
@@ -21,5 +22,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\User::factory(10)->create();
+
+        // other seeders
+        $this->call([
+            // category seed
+            CategorySeeder::class,
+            // product seed
+            ProductSeeder::class,
+        ]);
     }
 }

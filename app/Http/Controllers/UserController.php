@@ -19,14 +19,14 @@ class UserController extends Controller
                     ->orWhere('email', 'like', '%' . $name . '%');
             })
             ->paginate(10);
-        return view('pages.users.index', compact('users'));
+        $type_menu = 'dashboard';
+        return view('pages.users.index', compact('users', 'type_menu'));
     }
 
     // create
     public function create()
     {
-
-        return view('pages.users.create');
+        return view('pages.users.create', ['type_menu' => 'dashboard']);
     }
 
     // store
@@ -54,15 +54,15 @@ class UserController extends Controller
     // show
     public function show()
     {
-
-        return view('pages.users.show');
+        return view('pages.users.show', ['type_menu' => 'dashboard']);
     }
 
     // edit
     public function edit($id)
     {
         $user = User::findOrfail($id);
-        return view('pages.users.edit', compact('user'));
+        $type_menu = 'dashboard';
+        return view('pages.users.edit', compact('user', 'type_menu'));
     }
 
     // update
